@@ -42,41 +42,42 @@ function Paddle() {
 */
 function Bricks() {
     for(var i=0; i<1000; i +=150) {
+       
        for(var k=0; k< 50; k +=50) {
             ctx.beginPath();
             ctx.rect(i, k, 100, 20);
             ctx.fillStyle = green;
             ctx.fill();
             ctx.closePath();
-            }
-         for(var k=50; k< 100; k +=50) {
+        }
+        for(var k=50; k< 100; k +=50) {
             ctx.beginPath();
             ctx.rect(i, k, 100, 20);
             ctx.fillStyle = red;
             ctx.fill();
             ctx.closePath();
-         }
-         for(var k=100; k< 150; k +=50) {
+        }
+        for(var k=100; k< 150; k +=50) {
             ctx.beginPath();
             ctx.rect(i, k, 100, 20);
             ctx.fillStyle = blue;
             ctx.fill();
             ctx.closePath();
-         }
+        }
         for(var k=150; k< 200; k +=50) {
             ctx.beginPath();
             ctx.rect(i, k, 100, 20);
             ctx.fillStyle = orange;
             ctx.fill();
             ctx.closePath();
-         }
+        }
         for(var k=200; k< 250; k +=50) {
             ctx.beginPath();
             ctx.rect(i, k, 100, 20);
             ctx.fillStyle = purple;
             ctx.fill();
             ctx.closePath();
-         }
+        }
 
     }
 }
@@ -84,9 +85,11 @@ function Bricks() {
 function drawAll() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	Paddle();
-    Bricks();
-	}//drawAll
-	drawAll();
+    	Bricks();
+}//drawAll
+	
+drawAll();
+
 </script>
 
 </body>
