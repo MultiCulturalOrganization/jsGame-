@@ -3,7 +3,7 @@ Surin Rao  Mar 30 2016 Scrum 2 Atari
 Super helpful: http://cheatsheetworld.com/programming/html5-canvas-cheat-sheet/
 */
 
-//First comment using GitHub Desktop
+//Sample Comment
 
 //-------------------------------Variables -------------------------------------
 /*
