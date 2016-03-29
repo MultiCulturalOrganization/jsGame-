@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: rgba(0, 0, 0, 1);
+}
+</style>
+</head>
+<body onload="startGame()">
+<script>
+// Variables
+var myGamePiece, EnemyPiece = [];
+var myBullet = [];
+var can_shoot = true;
+var EnemySpawn;
+var myScore;
+var kill = 0;
+
+//Load everything once the game loads
+function startGame() {
+    myGameArea.start();
+    myGamePiece = new component(30, 30, "https://cdn.tutsplus.com/mobile/uploads/legacy/Corona-SDK_Build-Space-Shooter/1/9.png", 240, 230, "image");
+	EnemySpawn = new component(30, 30, "black", 280, 0);
+	myScore = new component("30px", "Consolas", "white", 40, 40, "text");
+}
+
+//Setting up game area
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 1025;
+        this.canvas.height = 600;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+		window.addEventListener('keydown', function (e) {
+            myGameArea.keys = (myGameArea.keys || []);
+            myGameArea.keys[e.keyCode] = true;
+        })
+        window.addEventListener('keyup', function (e) {
+            myGameArea.keys[e.keyCode] = false; 
+        })
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+	stop : function() {
+        clearInterval(this.interval);
+    }
+}
+
+//Set coords speed and draw image
+function component(width, height, color, x, y, type) {
+	this.type = type;
+	if (type == "image") {
+    this.image = new Image();
+    this.image.src = color;
+  }
+    this.width = width;
+    this.height = height;
+	this.speedX = 0;
+    this.speedY = 0;
+    this.x = x;
+    this.y = y;
+	this.update = function(){    
+   		ctx = myGameArea.context;
+		if (this.type == "text") {
+      ctx.font = this.width + " " + this.height;
+      ctx.fillStyle = color;
+      ctx.fillText(this.text, this.x, this.y);
+	}
+		if (type == "image") {
+      ctx.drawImage(this.image, 
+        this.x, 
+        this.y,
+        this.width, this.height);
+		} else {
+    		ctx.fillStyle = color;
+    		ctx.fillRect(this.x, this.y, this.width, this.height);
+		}
+	}
+	this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY; 
+    } 
+	// Create hurtbox and check for collisions
+	this.crashWith = function(otherobj) {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        var crash = true;
+        if ((mybottom < othertop) ||
+               (mytop > otherbottom) ||
+               (myright < otherleft) ||
+               (myleft > otherright)) {
+           crash = false;
+        }
+        return crash;
+    }
+}
+
+//Update frames
+function updateGameArea() {
+	// Collision bullet with enemy
+	for (i = 0; i < myBullet.length; i += 1) {
+		for (j = 0; j < EnemyPiece.length; j += 1) {
+        if (EnemyPiece[j].crashWith(myBullet[i])) {
+			EnemyPiece[j].height = 0;
+			EnemyPiece[j].width = 0;
+			kill += 10;
+        } 
+		}
+    }
+	// Collision player with enemy
+	for (i = 0; i < EnemyPiece.length; i += 1) {
+        if (myGamePiece.crashWith(EnemyPiece[i])) {
+			if (EnemyPiece[i].height > 0)
+			{
+				myGameArea.stop();
+			}
+        } 
+    }
+	myGameArea.clear();
+	myGamePiece.speedX = 0;
+    myGamePiece.speedY = 0; 
+	// Move player
+	if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.speedX = -3;}
+    if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.speedX = 3; }
+    if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speedY = -3; }
+    if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speedY = 3; }
+	if (EnemySpawn.x > 1025)
+	{
+		EnemySpawn.x = 0;	
+	}
+	EnemySpawn.x += 39;
+	myScore.text="SCORE: " + kill;
+	myScore.update();
+	myGamePiece.newPos(); 
+    myGamePiece.update();
+	EnemySpawn.update();
+	if (myGameArea.keys && myGameArea.keys[32])
+	{
+		if (can_shoot == true) // Check if player can shoot, if so, shoot duh
+		{
+			x = myGamePiece.x+10;
+        	y = myGamePiece.y;
+			myBullet.push(new component(10, 10, "white", x, y));
+			setTimeout(setShoot, 600);
+			can_shoot = false;
+		}
+	} 
+	// move bullets
+	for (i = 0; i < myBullet.length; i += 1) {
+        myBullet[i].y += -10;
+        myBullet[i].update();
+    }
+	// move enemies
+	for (i = 0; i < EnemyPiece.length; i += 1) {
+        EnemyPiece[i].y -= -3;
+        EnemyPiece[i].update();
+    }
+	// Assign random number to a variable
+	var rnd = Math.random();
+	//Spawn enemies randomly
+	if (rnd < 0.3)
+	{
+		x = EnemySpawn.x;
+        y = EnemySpawn.y;
+		EnemyPiece.push(new component(30, 30, "red", x, y));
+	}
+}
+//Change it so player can shoot
+function setShoot() {
+    can_shoot = true;
+}
+
+</script>
+
+</body>
+</html>
