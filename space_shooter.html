@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- comment-->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style>
@@ -170,8 +169,9 @@ function updateGameArea() {
     }
 	// Assign random number to a variable
 	var rnd = Math.random();
+	var difficulty;
 	//Spawn enemies randomly
-	if (rnd < 0.3)
+	if (rnd < difficulty)
 	{
 		x = EnemySpawn.x;
         y = EnemySpawn.y;
@@ -182,7 +182,7 @@ function updateGameArea() {
 function setShoot() {
     can_shoot = true;
 }
-
+// Things to add for second scrum: Increasing difficulty, power ups, fix bullet collision
 </script>
 
 </body>
