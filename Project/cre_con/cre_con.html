@@ -1,0 +1,108 @@
+<!-- Author: Daniel Wang
+Last Edit: March 20th
+This is the html for credit page -->
+
+<!DOCTYPE html>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+put JQuery before CSS, Bootstrap is assuming that you have JQ-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/style.css">
+<head>
+<meta charset=utf-8 />
+<title>Credit and Contact</title>
+</head>
+
+<!--navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <!--Accessible Rich Internet Applications, indicates the state of a collapsible elements. 
+            In this case state of the dropdown menu. False = collapsed
+            https://www.w3.org/WAI/PF/aria/states_and_properties#state_prop_def -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <!-- navbar alignment based on button i guess
+                Try resize your browser window and see what happens
+                3 icon bars used to make a ≡ button -->
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <!-- replace brand with a logo of our corporation
+            MC stands for MULTICULTURAL
+            save the png, i photoshoped it to fit the color theme -->
+          <a class="navbar-logo" href="../homepage/homepage.html">
+            <img id= "img1" alt="logo" src="img/logo.png">
+            </a>
+      </div>
+
+
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+        <li class="active"><a href="../homepage/homepage.html">Home<span class="sr-only">(current)</span></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="../shooter/shooter.html">Space Shooter</a></li>
+              <li><a href="../atari/atari.html">Atari Breakout</a></li>
+              <li><a href="../trivia/trivia.html">Trivia</a></li>   
+            </ul>
+        </li>
+        <li><a href="../scoreboard/score.html">Scoreboard</a></li>
+        <li><a href="../cre_con/cre_con.html">Credit and Contact</a></li>
+      </ul>
+      
+      
+      
+<!-- to the right, users -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Setting</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- navbar-collapse -->
+  </div><!-- container-fluid -->
+</nav><!--big big big navbar end-->
+
+
+<div class='content'>
+  <div class='visible'>
+    <p>
+      Created By
+    </p>
+    <ul id="ul1">
+      <li id="li1">R.Digba</li>
+      <li id="li2">G.Jiang</li>
+      <li id="li3">S.Rao</li>
+      <li id="li4">D.Wang</li>
+    </ul>
+  </div>
+</div>
+
+  <h id="h1">Contact Team MC</h>
+  <h id="h2">Email: info@mccorp.com</h>
+  <h id="h3">Tel: 1234567890</h>
+  <h id="h4">200 Lonsdale Rd</h>
+  <h id="h5">Toronto, Ontario</h>
+  <h id="h6">Canada, M4V1W6</h>
+  <h id="h7">Follow us on:</h>
+  <a href="https://www.google.ca/maps/place/Upper+Canada+College/@43.6905179,-79.4065947,17z/data=!3m1!4b1!4m2!3m1!1s0x882b33684057775d:0x3dd2a9840eeeced9">
+  <img id="img2" src="img/map.png"/>
+  </a>

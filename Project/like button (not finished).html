@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) 
+put JQuery before CSS, Bootstrap is assuming that you have JQ-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<style>
+body {
+  background: #082330;
+}
+
+button {
+  position: absolute;
+  top: 475px;
+  left: 425px;
+  width: 90px;
+  height: 40px;
+  background: #907979;
+  border: 0;
+  font-size: 1em;
+  font-family: 'Muli';
+  font-weight: bold;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+button:hover {
+  color: #84d9ff;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+button:hover span {
+  opacity: 1;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+button:active {
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
+button span {
+  position: absolute;
+  top: -55px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #84d9ff;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
+  border-radius: 100px;
+  opacity: 0;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+button span:hover {
+  opacity: 1;
+}
+button span:after {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #84d9ff;
+}
+
+p {
+	position: absolute;
+	top:475px;
+	left:535px;
+	color: #799090;
+	font-size: 2em;
+  	font-family: 'Muli';
+  	font-weight: bold;
+}
+
+</style>
+
+<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+<button type='button' id="button1" onClick="thankyou()">
+  	Like
+  	<span>0</span>
+</button>
+<p id="thanks">If you enjoyed the game<br/>please hit the like button<p>
+
+<script>
+
+var text = document.getElementById("thanks");
+
+(function () {
+    $('button').click(function () {
+        $('span').html(function (i, val) {
+            return val * 1 + 1;
+        });
+    });
+}.call(this));
+
+function thankyou() {
+	text.innerHTML = "Thank you for your support!";
+}
+</script>
